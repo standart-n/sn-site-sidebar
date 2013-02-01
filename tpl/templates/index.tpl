@@ -15,9 +15,7 @@
 <meta name=”viewport” content=”user-scalable=no” />
 <link href="sn-project/favicon.ico" rel="icon" type="image/x-icon">
 <link href="sn-project/favicon.ico" rel="shortcut icon" type="image/x-icon">
-<link href="sn-project/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="sn-project/css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
-<link href="sn-project/css/sn.css" rel="stylesheet" type="text/css">
+<link href="sn-project/css/style.css" rel="stylesheet" type="text/css">
 
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,17 +49,7 @@
 </div>
 
 <div id="js">
-	<script src="sn-project/lib/jQuery.1.8.3.min.js" type="text/javascript"></script>
-	<script src="sn-project/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="sn-project/js/sn.min.js" type="text/javascript"></script>
-	<script src="sn-project/player/audio.min.js" type="text/javascript"></script>
-	
-	<script type="text/javascript">
-	$(function(){
-		$("#sn").sn();
-	});
-	</script>
-
+	<script src="sn-project/js/dev.lmd.js" type="text/javascript"></script>
 </div>
 
 </body>

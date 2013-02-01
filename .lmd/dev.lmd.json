@@ -1,0 +1,15 @@
+{
+	"name": "dev build",
+	"root": "../",
+	"output": "js/dev.lmd.js",
+	"modules": {
+		"main": "js/main.min.js",
+		"jquery": "lib/jQuery.1.8.3.min.js",
+		"sn": "js/sn.min.js",
+		"bootstrap": "js/bootstrap.min.js"
+	},
+	"main": "main",
+	"lazy": true,
+	"pack": true,
+	"version": "2.0"
+}

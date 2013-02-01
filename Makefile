@@ -9,15 +9,28 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start sn bs finish
+all: start js css img lmd finish
 
 sn: sn-css sn-js
 
 bs: bs-css bs-js bs-img
-	
+
+js: sn-js bs-js main-js lmd
+
+css: sn-css bs-css main-css
+
+img: bs-img
+
+lmd:
+	@echo "lmd\n"
+	@lmd build dev
+
+main-css:
+	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
+
 sn-css:
 	@echo "sn: compiling LESS with Recess\n"
-	@recess --compile ./css/sn.css > ./css/sn.less
+	@recess --compile ./less/sn.less > ./css/sn.css
 
 sn-js:
 	@echo "sn: running JSHint on javascript...\n"
@@ -26,6 +39,10 @@ sn-js:
 	@echo "sn: compiling and minifying javascript...\n"
 	@cat ./script/sn.js ./script/sn.ajax.js ./script/sn.conf.js ./script/sn.events.js ./script/sn.triggers.js > ./js/sn.js
 	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
+
+main-js:
+	@cat ./script/main.js > ./js/main.js
+	@uglifyjs ./js/main.js -nc > ./js/main.min.js
 
 bs-img:
 	@cp ./${BS}/img/* ./img/
