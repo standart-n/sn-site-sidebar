@@ -8,8 +8,9 @@
 		"sn": "js/sn.min.js",
 		"bootstrap": "js/bootstrap.min.js"
 	},
-	"main": "main",
+	"main":"main",
 	"lazy": true,
 	"pack": true,
+	"ie": true,
 	"version": "2.0"
 }

@@ -9,13 +9,13 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start coffein js css img finish
+all: start caffeine js css img finish
 
-sn: sn-css coffee sn-js lmd
+sn: sn-css caffeine sn-js lmd
 
 bs: bs-css bs-js bs-img lmd
 
-js: coffein sn-js bs-js lmd
+js: caffeine sn-js bs-js lmd
 
 css: sn-css bs-css main-css
 
@@ -25,9 +25,9 @@ lmd:
 	@echo "lmd\n"
 	@lmd build dev
 
-coffein:
+caffeine:
 	@echo "coffee...\n"
-	@coffee -o ./script/ -c ./coffee/*.coffee
+	@coffee -o ./script/ -cb ./coffee/*.coffee
 
 main-css:
 	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
@@ -37,13 +37,16 @@ sn-css:
 	@recess --compile ./less/sn.less > ./css/sn.css
 
 sn-js:
+	@echo "sn: compiling and minifying javascript...\n"
+	@cat ./script/sn.js ./script/sn.ajax.js ./script/sn.conf.js ./script/sn.events.js ./script/sn.triggers.js > ./js/sn.js
+	@cp ./.lmd/main ./script/sn.main.js
+	@cp ./script/sn.main.js ./js/sn.main.js
+
 	@echo "sn: running JSHint on javascript...\n"
 	@jshint ./script/*.js --config ./script/.jshintrc
 
-	@echo "sn: compiling and minifying javascript...\n"
-	@cat ./script/sn.js ./script/sn.ajax.js ./script/sn.conf.js ./script/sn.events.js ./script/sn.triggers.js > ./js/sn.js
+	@echo "sn: uglifyjs...\n"
 	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
-	@cp ./script/sn.main.js ./js/sn.main.js
 	@uglifyjs ./js/sn.main.js -nc > ./js/sn.main.min.js
 
 bs-img:
@@ -73,9 +76,9 @@ finish:
 	@echo "Successfully built at ${DATE}."
 
 
-
 #	@echo "${HR}\n"
 #	@echo "Thanks for using Bootstrap,"
+#	@cp ./script/sn.main.js ./js/sn.main.js
 
 #
 # RUN JSHINT & QUNIT TESTS IN PHANTOMJS

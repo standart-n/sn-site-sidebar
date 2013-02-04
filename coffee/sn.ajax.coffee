@@ -28,9 +28,9 @@ $ ->
 					key:sn.result.key
 				dataType:def.type
 				timeout:10000
-				beforeSend ->
+				beforeSend: ->
 					$("#loading").show()
-				success (s) ->
+				success: (s) ->
 					if typeof s=='object'
 						$.extend true,sn.result,s
 					else 
@@ -41,7 +41,7 @@ $ ->
 						alert sn.result.alert if sn.result.alert
 						$(@).snEvents href:'#'+sn.result.callback if sn.result.callback
 					$("#loading").hide()
-				error (XMLHttpRequest,textStatus,error) ->
+				error: (XMLHttpRequest,textStatus,error) ->
 				
 	$.fn.snAjax= (sn) ->
 		sn={} if !sn

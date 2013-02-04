@@ -20,6 +20,3 @@ $ ->
 				methods.init.apply @,arguments
 			else 
 				$.error 'Метод '+sn+' не существует'
-
-
-
