@@ -9,13 +9,13 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start js css img lmd finish
+all: start coffein js css img finish
 
-sn: sn-css sn-js
+sn: sn-css coffee sn-js lmd
 
-bs: bs-css bs-js bs-img
+bs: bs-css bs-js bs-img lmd
 
-js: sn-js bs-js main-js lmd
+js: coffein sn-js bs-js lmd
 
 css: sn-css bs-css main-css
 
@@ -24,6 +24,10 @@ img: bs-img
 lmd:
 	@echo "lmd\n"
 	@lmd build dev
+
+coffein:
+	@echo "coffee...\n"
+	@coffee -o ./script/ -c ./coffee/*.coffee
 
 main-css:
 	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
@@ -39,10 +43,8 @@ sn-js:
 	@echo "sn: compiling and minifying javascript...\n"
 	@cat ./script/sn.js ./script/sn.ajax.js ./script/sn.conf.js ./script/sn.events.js ./script/sn.triggers.js > ./js/sn.js
 	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
-
-main-js:
-	@cat ./script/main.js > ./js/main.js
-	@uglifyjs ./js/main.js -nc > ./js/main.min.js
+	@cp ./script/sn.main.js ./js/sn.main.js
+	@uglifyjs ./js/sn.main.js -nc > ./js/sn.main.min.js
 
 bs-img:
 	@cp ./${BS}/img/* ./img/
