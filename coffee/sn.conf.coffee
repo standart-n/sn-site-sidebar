@@ -8,7 +8,7 @@ $ ->
 				url: 'sn-project/settings/main.json'
 				async:false
 				dataType:'json'
-				success: (s) =>
+				success: (s) ->
 					$.extend true,sn,s
 					$(@).data 'sn',sn
 

@@ -8,28 +8,44 @@ $ ->
 			if $("#signin").html()!=""
 				$(this).snTriggers 'signin'
 		signin: ->
-			$("#fSignin").on "submit",(e) =>
+			th=$(this)
+			$("#fSignin").on "submit",(e) ->
 				e.preventDefault()
-				@.snEvents href:'#signin'
-		# table: ->
-		# 	$(".status").on "keyup",() =>
-		# 		@snAjax('sendRequest',{'action':'edit','id':$(this).data('id'),'message':$(this).val(),'debug':false});
-		# 	$(".status").on("blur",function(){
-		# 		th.snAjax('sendRequest',{'action':'edit','id':$(this).data('id'),'message':$(this).val(),'debug':false});
-		# pagination: ->
-		# 	$("a#prev").on("click",function(e){
-		# 		e.preventDefault();
-		# 		$("#page").val(($("#page").val()*1)-1);
-		# 		th.snAjax('sendRequest',{'action':'signin','debug':false});
-		# 	$("a.list").on("click",function(e){
-		# 		e.preventDefault();
-		# 		$("#page").val($(this).data("page"));
-		# 		th.snAjax('sendRequest',{'action':'signin','debug':false});
-		# 	$("a#next").on("click",function(e){
-		# 		e.preventDefault();
-		# 		$("#page").val(($("#page").val()*1)+1);
-		# 		th.snAjax('sendRequest',{'action':'signin','debug':false});
-
+				th.snEvents href:'#signin'
+		table: ->
+			th=$(this)
+			$(".status").on "keyup",() ->
+				th.snAjax 'sendRequest',
+						action:'edit'
+						id:$(this).data 'id'
+						message:$(this).val()
+						debug:false
+			$(".status").on "blur",() ->
+				th.snAjax 'sendRequest',
+						action:'edit'
+						id:$(this).data 'id'
+						message:$(this).val()
+						debug:false
+		pagination: ->
+			th=$(this)
+			$("a#prev").on "click",(e) ->
+				e.preventDefault()
+				$("#page").val $("#page").val()*1-1
+				th.snAjax 'sendRequest'
+						action:'signin'
+						debug:false
+			$("a.list").on "click",(e) ->
+				e.preventDefault()
+				$("#page").val $(this).data "page"
+				th.snAjax 'sendRequest'
+						action:'signin'
+						debug:false
+			$("a#next").on "click",(e) ->
+				e.preventDefault()
+				$("#page").val $("#page").val()*1+1
+				th.snAjax 'sendRequest'
+						action:'signin'
+						debug:false
 
 	$.fn.snTriggers= (sn) ->
 		sn={} if !sn
