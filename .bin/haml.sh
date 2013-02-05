@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-for i in $( ls ./haml/*.haml );
+cd ./haml/
+for i in $( ls *.haml );
 do
-	haml ${i/.haml/}.haml ./test/123
+	haml ${i/.haml/}.haml ../tpl/templates/${i/.haml/}.tpl
+	#echo ${i/.haml/}.haml
 done
+cd ../
