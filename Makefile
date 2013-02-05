@@ -9,7 +9,7 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start caffeine js css img finish
+all: start caffeine js css img haml-tpl finish
 
 sn: sn-css caffeine sn-js lmd
 
@@ -24,6 +24,10 @@ img: bs-img
 lmd:
 	@echo "lmd\n"
 	@lmd build dev
+
+haml-tpl:
+	@echo "haml...\n"
+	@./.bin/haml.sh
 
 caffeine:
 	@echo "coffee...\n"
@@ -84,5 +88,6 @@ finish:
 # RUN JSHINT & QUNIT TESTS IN PHANTOMJS
 #
 
+# haml ./haml/* ./test/
 
 #.PHONY: docs watch gh-pages
