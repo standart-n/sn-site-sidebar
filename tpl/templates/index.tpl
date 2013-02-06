@@ -4,8 +4,8 @@
     <title>standart-n</title>
     <meta content='ru' http-equiv='Content-Language' />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type' />
-    <meta content='Учет звонков' name='description' />
-    <meta content='Учет звонков' name='keywords' />
+    <meta content='standart-n' name='description' />
+    <meta content='standart-n' name='keywords' />
     <meta content='3' name='Revesit' />
     <meta content='Dynamic' name='Document-state' />
     <meta Lang='eng' content='2012 standart-n.ru' name='Copyright' />
