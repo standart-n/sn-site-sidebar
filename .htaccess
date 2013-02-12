@@ -22,3 +22,42 @@ php_value memory_limit 32M
 CharsetSourceEnc utf-8
 CharsetDefault utf-8
 </IfModule>
+
+
+AddType 'image/x-icon; charset=utf-8' .ico
+AddType 'text/html; charset=utf-8' .html .shtml
+AddType 'text/xml; charset=utf-8'  .xml
+
+# добавление сжатия файлов
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/xml image/x-icon text/css text/javascript
+
+    # обработка "кривых" броузеров
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch Konqueror no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header append Vary User-Agent
+
+    # разрешение кеширования файлов на стороне клиента
+    <FilesMatch .*\.(jpg|png|css|js|php|phtml|shtml|html|xml)$>
+        Header append Cache-Control private
+    </FilesMatch>
+</IfModule>
+
+# включение заголовка Expires для всех файлов сроком на месяц
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # выключение Expires для HTML-файлов и PHP-скриптов
+    <FilesMatch .*\.(shtml|html|phtml|php)$>
+        ExpiresActive Off
+    </FilesMatch>
+</IfModule>
+
+# Выдача заголовка ETag (core feature)
+FileETag MTime Size
