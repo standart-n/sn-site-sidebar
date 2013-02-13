@@ -19,7 +19,7 @@
             <a href='#' id='next'>»</a>
           </li>
         </ul>
-        <input id='page' type='hidden' value='{if isset($page)}{$page}{/if}' />
+        <input id='page' type='hidden' value='{if isset($page)}{$page}{/if}'>
       </div>
     </div>
   </div>

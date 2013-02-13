@@ -9,13 +9,13 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start caffeine js css img haml-tpl finish
+all: start coffee-js js css img haml-tpl finish
 
-sn: sn-css caffeine sn-js lmd
+sn: sn-css main-css coffee-js sn-js lmd
 
-bs: bs-css bs-js bs-img lmd
+bs: bs-css main-css bs-js bs-img lmd
 
-js: caffeine sn-js bs-js lmd
+js: coffee-js sn-js bs-js lmd
 
 css: sn-css bs-css main-css
 
@@ -29,7 +29,7 @@ haml-tpl:
 	@echo "haml...\n"
 	@./.bin/haml.sh
 
-caffeine:
+coffee-js:
 	@echo "coffee...\n"
 	@coffee -o ./script/ -cb ./coffee/*.coffee
 

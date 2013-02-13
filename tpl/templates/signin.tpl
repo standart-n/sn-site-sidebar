@@ -15,13 +15,13 @@
               <div class='control-group'>
                 <label class='control-label' for='inputLogin'>Логин</label>
                 <div class='controls'>
-                  <input id='inputLogin' placeholder='login' type='text' />
+                  <input id='inputLogin' placeholder='login' type='text'>
                 </div>
               </div>
               <div class='control-group'>
                 <label class='control-label' for='inputPassword'>Пароль</label>
                 <div class='controls'>
-                  <input id='inputPassword' placeholder='password' type='password' />
+                  <input id='inputPassword' placeholder='password' type='password'>
                 </div>
               </div>
               <div class='control-group'>
