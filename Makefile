@@ -39,10 +39,12 @@ coffee-js:
 
 main-css:
 	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
+	@cat ./css/bootstrap.min.css ./css/bootstrap-responsive.min.css ./css/sn.min.css > ./css/style.min.css
 
 sn-css:
 	@echo "\nsn: compiling LESS with Recess\n"
 	@recess --compile ./less/sn.less > ./css/sn.css
+	@recess --compress ./less/sn.less > ./css/sn.min.css
 
 sn-js:
 	@echo "\nsn: compiling and minifying javascript...\n"
@@ -63,7 +65,9 @@ bs-img:
 bs-css:
 	@echo "\nbs: compiling LESS with Recess...\n"
 	@recess --compile ./${BS}/less/bootstrap.less > ./css/bootstrap.css
+	@recess --compress ./${BS}/less/bootstrap.less > ./css/bootstrap.min.css
 	@recess --compile ./${BS}/less/responsive.less > ./css/bootstrap-responsive.css
+	@recess --compress ./${BS}/less/responsive.less > ./css/bootstrap-responsive.min.css
 
 bs-js:
 	@echo "\nbs: running JSHint on javascript...\n"
