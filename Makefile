@@ -59,26 +59,26 @@ sn-js:
 	@uglifyjs ./js/sn.main.js -nc > ./js/sn.main.min.js
 
 bs-img:
-	@cp ./${BS}/img/* ./img/
+	@cp ./bootstrap/img/* ./img/
 
 bs-css:
 	@echo "\nbs: compiling LESS with Recess...\n"
-	@recess --compile ./${BS}/less/bootstrap.less > ./css/bootstrap.css
-	@recess --compress ./${BS}/less/bootstrap.less > ./css/bootstrap.min.css
-	@recess --compile ./${BS}/less/responsive.less > ./css/bootstrap-responsive.css
-	@recess --compress ./${BS}/less/responsive.less > ./css/bootstrap-responsive.min.css
+	@recess --compile ./bootstrap/less/bootstrap.less > ./css/bootstrap.css
+	@recess --compress ./bootstrap/less/bootstrap.less > ./css/bootstrap.min.css
+	@recess --compile ./bootstrap/less/responsive.less > ./css/bootstrap-responsive.css
+	@recess --compress ./bootstrap/less/responsive.less > ./css/bootstrap-responsive.min.css
 
 bs-js:
 	@echo "\nbs: running JSHint on javascript...\n"
-	@jshint ./${BS}/js/*.js --config ./${BS}/js/.jshintrc
+	@jshint ./bootstrap/js/*.js --config ./bootstrap/js/.jshintrc
 	
 	@echo "bs: compiling and minifying javascript...\n"
 	@cat ./bootstrap/js/bootstrap-*.js  > ./js/bootstrap.js
 	@uglifyjs ./js/bootstrap.js -nc > ./js/bootstrap.min.tmp.js
 
-	@echo "/**\n* ${BS}.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./${BS}/copyright
-	@cat ./${BS}/copyright ./js/${BS}.min.tmp.js > ./js/${BS}.min.js
-	@rm ./${BS}/copyright ./js/${BS}.min.tmp.js
+	@echo "/**\n* bootstrap.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./bootstrap/copyright
+	@cat ./bootstrap/copyright ./js/bootstrap.min.tmp.js > ./js/bootstrap.min.js
+	@rm ./bootstrap/copyright ./js/bootstrap.min.tmp.js
 
 start:
 	@echo "standart-n: \n"
