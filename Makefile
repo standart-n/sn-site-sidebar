@@ -1,5 +1,4 @@
 
-BS = bootstrap
 DATE=$(shell date +%I:%M%p)
 CHECK=\033[32m✔\033[39m
 HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
@@ -35,7 +34,7 @@ haml-tpl:
 
 coffee-js:
 	@echo "\ncoffee...\n"
-	@coffee -o ./script/ -cb ./coffee/*.coffee
+	@coffee -cbjvp ./coffee/*.coffee > ./script/sn.js
 
 main-css:
 	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
@@ -48,7 +47,7 @@ sn-css:
 
 sn-js:
 	@echo "\nsn: compiling and minifying javascript...\n"
-	@cat ./script/sn.js ./script/sn.ajax.js ./script/sn.conf.js ./script/sn.events.js ./script/sn.triggers.js > ./js/sn.js
+	@cat ./script/sn.js > ./js/sn.js
 	@cp ./.lmd/main ./script/sn.main.js
 	@cp ./script/sn.main.js ./js/sn.main.js
 
@@ -74,7 +73,7 @@ bs-js:
 	@jshint ./${BS}/js/*.js --config ./${BS}/js/.jshintrc
 	
 	@echo "bs: compiling and minifying javascript...\n"
-	@cat ./${BS}/js/${BS}-transition.js ./${BS}/js/${BS}-alert.js ./${BS}/js/${BS}-button.js ./${BS}/js/${BS}-carousel.js ./${BS}/js/${BS}-collapse.js ./${BS}/js/${BS}-dropdown.js ./${BS}/js/${BS}-modal.js ./${BS}/js/${BS}-tooltip.js ./${BS}/js/${BS}-popover.js ./${BS}/js/${BS}-scrollspy.js ./${BS}/js/${BS}-tab.js ./${BS}/js/${BS}-typeahead.js ./${BS}/js/${BS}-affix.js > ./js/bootstrap.js
+	@cat ./bootstrap/js/bootstrap-*.js  > ./js/bootstrap.js
 	@uglifyjs ./js/bootstrap.js -nc > ./js/bootstrap.min.tmp.js
 
 	@echo "/**\n* ${BS}.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./${BS}/copyright

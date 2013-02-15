@@ -1,0 +1,3 @@
+[submodule "sn-system"]
+	path = sn-system
+	url = git://github.com/standart-n/sn-system.git
