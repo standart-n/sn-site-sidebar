@@ -30,7 +30,7 @@ lmd:
 
 haml-tpl:
 	@echo "\nhaml...\n"
-	@./.bin/haml.sh
+	@./.sh/haml.sh
 
 coffee-js:
 	@echo "\ncoffee...\n"
