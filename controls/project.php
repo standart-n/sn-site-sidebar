@@ -6,19 +6,19 @@ function __construct() {
 
 public static function engine() {
 	//if (signin::check()) {
-		load("index.tpl");
+		load("index.html");
 		// assign('pagination',app::pagination());
 		// assign('prev',app::$prev);
 		// assign('next',app::$next);
 		// assign('page',app::$page);
-		// innerHTML("#pagination",fetch("pagination.tpl"));
+		// innerHTML("#pagination",fetch("pagination.html"));
 		// assign('claims',app::claims());
-		// innerHTML("#claims",fetch("claims.tpl"));
+		// innerHTML("#claims",fetch("claims.html"));
 		//echo sql::$request;
 		echo html();
 	// } else {
-	// 	load("index.tpl");
-	// 	innerHTML("#signin",fetch("signin.tpl"));
+	// 	load("index.html");
+	// 	innerHTML("#signin",fetch("signin.html"));
 	// 	//echo sql::$request;
 	// 	echo html();
 	// }
@@ -32,9 +32,9 @@ public static function signin($j=array()) {
 		// assign('prev',app::$prev);
 		// assign('next',app::$next);
 		// assign('page',app::$page);
-		// $j['pagination']=fetch("pagination.tpl");
+		// $j['pagination']=fetch("pagination.html");
 		// assign('claims',app::claims());
-		// $j['claims']=fetch("claims.tpl");
+		// $j['claims']=fetch("claims.html");
 	} else {
 		$j['response']=false;
 	}

@@ -7129,7 +7129,23 @@ a.badge:hover {
     overflow: visible !important;
   }
 }
-#main {
-  padding-top: 20px;
-  padding-bottom: 40px;
+body {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+a.pause {
+  display: none;
+}
+
+#loading {
+  display: none;
+}
+
+#signin-error {
+  display: none;
+}
+
+.fb-name {
+  display: inline;
 }

@@ -8,7 +8,7 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start coffee-js js css img haml-tpl ajaxloader finish
+all: start coffee-js js css img jade-tpl ajaxloader finish
 
 sn: sn-css main-css coffee-js sn-js lmd
 
@@ -22,15 +22,18 @@ img: bs-img
 
 ajaxloader:
 	@echo "\najaxloader...\n"
-	@cat ./tpl/templates/index.tpl > ./index.html
+	@cat ./tpl/templates/index.html > ./index.html
 
 lmd:
 	@echo "\nlmd...\n"
 	@lmd build dev
 
-haml-tpl:
-	@echo "\nhaml...\n"
-	@./.sh/haml.sh
+jade-tpl:
+	@echo "\njade...\n"
+	@rm -R ./tpl/templates/
+	@mkdir ./tpl/templates/
+	@touch ./tpl/templates/.gitignore
+	@jade --pretty ./jade/ -O ./tpl/templates
 
 coffee-js:
 	@echo "\ncoffee...\n"
@@ -95,6 +98,5 @@ finish:
 # RUN JSHINT & QUNIT TESTS IN PHANTOMJS
 #
 
-# haml ./haml/* ./test/
 
 #.PHONY: docs watch gh-pages
