@@ -25,8 +25,8 @@ img: bs-img
 check-js:
 	@echo "\nrunning JSHint on javascript...\n"
 	@mkdir -p ./js-tmp/
-	@cp ./js/sn.js ./js-tmp/sn.js
-	@cp ./js/main.js ./js-tmp/main.js
+	@cp ./js/client/sn.js ./js-tmp/sn.js
+	@cp ./js/client/main.js ./js-tmp/main.js
 	@jshint ./js-tmp/*.js --config ./.jshintrc
 	@rm -R ./js-tmp/
 
@@ -50,7 +50,7 @@ jade-tpl:
 
 coffee-js:
 	@echo "\ncoffee...\n"
-	@coffee -cbjvp ./script/*.coffee > ./js/sn.js
+	@coffee -cbjvp ./script/ > ./js/client/sn.js
 
 main-css:
 	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
@@ -63,11 +63,11 @@ sn-css:
 
 sn-js:
 	@echo "\nsn: compiling and minifying javascript...\n"
-	@cp ./main.js ./js/main.js
+	@cp ./main.js ./js/client/main.js
 
 	@echo "\nsn: uglifyjs...\n"
-	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
-	@uglifyjs ./js/main.js -nc > ./js/main.min.js
+	@uglifyjs ./js/client/sn.js -nc > ./js/client/sn.min.js
+	@uglifyjs ./js/client/main.js -nc > ./js/client/main.min.js
 
 bs-img:
 	@cp ./bootstrap/img/* ./img/
@@ -81,18 +81,21 @@ bs-css:
 
 bs-js:
 	@echo "bs: compiling and minifying javascript...\n"
-	@cat ./bootstrap/js/bootstrap-*.js  > ./js/bootstrap.js
-	@uglifyjs ./js/bootstrap.js -nc > ./js/bootstrap.min.tmp.js
+	@cat ./bootstrap/js/bootstrap-*.js  > ./js/client/bootstrap.js
+	@uglifyjs ./js/client/bootstrap.js -nc > ./js/client/bootstrap.min.tmp.js
 
 	@echo "/**\n* bootstrap.js v2.2.2 by @fat & @mdo\n* Copyright 2012 Twitter, Inc.\n* http://www.apache.org/licenses/LICENSE-2.0.txt\n*/" > ./bootstrap/copyright
-	@cat ./bootstrap/copyright ./js/bootstrap.min.tmp.js > ./js/bootstrap.min.js
-	@rm ./bootstrap/copyright ./js/bootstrap.min.tmp.js
+	@cat ./bootstrap/copyright ./js/client/bootstrap.min.tmp.js > ./js/client/bootstrap.min.js
+	@rm ./bootstrap/copyright ./js/client/bootstrap.min.tmp.js
 
 start:
 	@echo "standart-n: \n"
+	@mkdir -p ./js/
 	@rm -R ./js/
 	@mkdir ./js/
 	@touch ./js/.gitignore
+	@mkdir -p ./js/client/
+	@chmod 777 -R ./js/
 
 finish:
 	@echo "\nSuccessfully built at ${DATE}."
