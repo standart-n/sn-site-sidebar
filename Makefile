@@ -63,7 +63,7 @@ sn-css:
 
 sn-js:
 	@echo "\nsn: compiling and minifying javascript...\n"
-	@cp ./.lmd/main ./js/sn.main.js
+	@cp ./main.js ./js/sn.main.js
 
 	@echo "\nsn: uglifyjs...\n"
 	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
