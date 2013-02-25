@@ -1,12 +1,12 @@
 {
 	"name": "dev build",
 	"root": "../",
-	"output": "js/dev.lmd.js",
+	"output": "js/client/dev.lmd.js",
 	"modules": {
-		"main": "js/main.min.js",
-		"jquery": "lib/jQuery.1.8.3.min.js",
-		"sn": "js/sn.min.js",
-		"bootstrap": "js/bootstrap.min.js"
+		"main": "js/client/main.min.js",
+		"jquery": "lib/js/jQuery.1.8.3.min.js",
+		"sn": "js/client/sn.min.js",
+		"bootstrap": "js/client/bootstrap.min.js"
 	},
 	"main":"main",
 	"lazy": true,

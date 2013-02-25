@@ -3,89 +3,6 @@
 $(function() {
   var methods;
   methods = {
-    init: function(options) {},
-    sendRequest: function(options) {
-      var def, sn;
-      if (!options) {
-        options = {};
-      }
-      def = {
-        type: 'json',
-        debug: false,
-        action: 'submit',
-        login: $('#inputLogin').val(),
-        password: $('#inputPassword').val(),
-        page: $('#page').val(),
-        id: '',
-        message: ''
-      };
-      $.extend(true, def, options);
-      if (def.debug) {
-        def.type = 'text';
-      }
-      sn = $(this).data('sn');
-      return $.ajax({
-        url: 'index.php',
-        type: 'POST',
-        data: {
-          action: def.action,
-          page: def.page,
-          login: def.login,
-          password: def.password,
-          id: def.id,
-          message: def.message,
-          key: sn.result.key
-        },
-        dataType: def.type,
-        timeout: 10000,
-        beforeSend: function() {
-          return $("#loading").show();
-        },
-        success: function(s) {
-          if (typeof s === 'object') {
-            $.extend(true, sn.result, s);
-          } else {
-            if (def.debug) {
-              alert(s);
-            }
-            sn.result = s;
-          }
-          $(this).data('sn', sn);
-          if (typeof sn.result === 'object') {
-            if (sn.result.alert) {
-              alert(sn.result.alert);
-            }
-            if (sn.result.callback) {
-              $(this).snEvents({
-                href: '#' + sn.result.callback
-              });
-            }
-          }
-          return $("#loading").hide();
-        },
-        error: function(XMLHttpRequest, textStatus, error) {}
-      });
-    }
-  };
-  return $.fn.snAjax = function(sn) {
-    if (!sn) {
-      sn = {};
-    }
-    if (methods[sn]) {
-      return methods[sn].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else {
-      if (typeof sn === 'object' || !sn) {
-        return methods.init.apply(this, arguments);
-      } else {
-        return $.error('Метод ' + sn + ' не существует');
-      }
-    }
-  };
-});
-
-$(function() {
-  var methods;
-  methods = {
     init: function(options) {
       var def;
       if (!options) {
@@ -106,42 +23,6 @@ $(function() {
     }
   };
   return $.fn.sn = function(sn) {
-    if (!sn) {
-      sn = {};
-    }
-    if (methods[sn]) {
-      return methods[sn].apply(this, Array.prototype.slice.call(arguments, 1));
-    } else {
-      if (typeof sn === 'object' || !sn) {
-        return methods.init.apply(this, arguments);
-      } else {
-        return $.error('Метод ' + sn + ' не существует');
-      }
-    }
-  };
-});
-
-$(function() {
-  var methods;
-  methods = {
-    init: function(options) {
-      return $(this).snConf(main);
-    },
-    main: function(options) {
-      var sn;
-      sn = $(this).data(sn);
-      return $.ajax({
-        url: 'sn-project/settings/main.json',
-        async: false,
-        dataType: 'json',
-        success: function(s) {
-          $.extend(true, sn, s);
-          return $(this).data('sn', sn);
-        }
-      });
-    }
-  };
-  return $.fn.snConf = function(sn) {
     if (!sn) {
       sn = {};
     }
@@ -306,6 +187,125 @@ $(function() {
     }
   };
   return $.fn.snTriggers = function(sn) {
+    if (!sn) {
+      sn = {};
+    }
+    if (methods[sn]) {
+      return methods[sn].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else {
+      if (typeof sn === 'object' || !sn) {
+        return methods.init.apply(this, arguments);
+      } else {
+        return $.error('Метод ' + sn + ' не существует');
+      }
+    }
+  };
+});
+
+$(function() {
+  var methods;
+  methods = {
+    init: function(options) {},
+    sendRequest: function(options) {
+      var def, sn;
+      if (!options) {
+        options = {};
+      }
+      def = {
+        type: 'json',
+        debug: false,
+        action: 'submit',
+        login: $('#inputLogin').val(),
+        password: $('#inputPassword').val(),
+        page: $('#page').val(),
+        id: '',
+        message: ''
+      };
+      $.extend(true, def, options);
+      if (def.debug) {
+        def.type = 'text';
+      }
+      sn = $(this).data('sn');
+      return $.ajax({
+        url: 'index.php',
+        type: 'POST',
+        data: {
+          action: def.action,
+          page: def.page,
+          login: def.login,
+          password: def.password,
+          id: def.id,
+          message: def.message,
+          key: sn.result.key
+        },
+        dataType: def.type,
+        timeout: 10000,
+        beforeSend: function() {
+          return $("#loading").show();
+        },
+        success: function(s) {
+          if (typeof s === 'object') {
+            $.extend(true, sn.result, s);
+          } else {
+            if (def.debug) {
+              alert(s);
+            }
+            sn.result = s;
+          }
+          $(this).data('sn', sn);
+          if (typeof sn.result === 'object') {
+            if (sn.result.alert) {
+              alert(sn.result.alert);
+            }
+            if (sn.result.callback) {
+              $(this).snEvents({
+                href: '#' + sn.result.callback
+              });
+            }
+          }
+          return $("#loading").hide();
+        },
+        error: function(XMLHttpRequest, textStatus, error) {}
+      });
+    }
+  };
+  return $.fn.snAjax = function(sn) {
+    if (!sn) {
+      sn = {};
+    }
+    if (methods[sn]) {
+      return methods[sn].apply(this, Array.prototype.slice.call(arguments, 1));
+    } else {
+      if (typeof sn === 'object' || !sn) {
+        return methods.init.apply(this, arguments);
+      } else {
+        return $.error('Метод ' + sn + ' не существует');
+      }
+    }
+  };
+});
+
+$(function() {
+  var methods;
+  methods = {
+    init: function(options) {
+      return $(this).snConf(main);
+    },
+    main: function(options) {
+      var sn;
+      sn = $(this).data(sn);
+      return $.ajax({
+        url: 'sn-project/settings/main.json',
+        async: false,
+        dataType: 'json',
+        success: function(s) {
+          $.extend(true, sn, s);
+          return $(this).data('sn', sn);
+        }
+      });
+    }
+  };
+  return $.fn.snConf = function(sn) {
     if (!sn) {
       sn = {};
     }
