@@ -8,9 +8,9 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start coffee-js js css img jade-tpl ajaxloader finish
+all: start client finish
 
-client: start coffee-js js css img jade-tpl ajaxloader finish
+client: coffee-js js css img jade-tpl ajaxloader
 
 sn: sn-css main-css coffee-js sn-js lmd
 
@@ -26,7 +26,7 @@ check-js:
 	@echo "\nrunning JSHint on javascript...\n"
 	@mkdir -p ./js-tmp/
 	@cp ./js/sn.js ./js-tmp/sn.js
-	@cp ./js/sn.main.js ./js-tmp/sn.main.js
+	@cp ./js/main.js ./js-tmp/main.js
 	@jshint ./js-tmp/*.js --config ./.jshintrc
 	@rm -R ./js-tmp/
 
@@ -63,11 +63,11 @@ sn-css:
 
 sn-js:
 	@echo "\nsn: compiling and minifying javascript...\n"
-	@cp ./main.js ./js/sn.main.js
+	@cp ./main.js ./js/main.js
 
 	@echo "\nsn: uglifyjs...\n"
 	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
-	@uglifyjs ./js/sn.main.js -nc > ./js/sn.main.min.js
+	@uglifyjs ./js/main.js -nc > ./js/main.min.js
 
 bs-img:
 	@cp ./bootstrap/img/* ./img/
@@ -100,7 +100,6 @@ finish:
 
 #	@echo "${HR}\n"
 #	@echo "Thanks for using Bootstrap,"
-#	@cp ./script/sn.main.js ./js/sn.main.js
 
 #
 # RUN JSHINT & QUNIT TESTS IN PHANTOMJS
