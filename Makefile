@@ -10,6 +10,8 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 
 all: start coffee-js js css img jade-tpl ajaxloader finish
 
+client: start coffee-js js css img jade-tpl ajaxloader finish
+
 sn: sn-css main-css coffee-js sn-js lmd
 
 bs: bs-css main-css bs-js bs-img lmd
@@ -19,6 +21,17 @@ js: coffee-js sn-js bs-js lmd
 css: sn-css bs-css main-css
 
 img: bs-img
+
+check-js:
+	@echo "\nrunning JSHint on javascript...\n"
+	@mkdir -p ./js-tmp/
+	@cp ./js/sn.js ./js-tmp/sn.js
+	@cp ./js/sn.main.js ./js-tmp/sn.main.js
+	@jshint ./js-tmp/*.js --config ./.jshintrc
+	@rm -R ./js-tmp/
+
+	@echo "\nbs: running JSHint on javascript...\n"
+	@jshint ./bootstrap/js/*.js --config ./bootstrap/js/.jshintrc
 
 ajaxloader:
 	@echo "\najaxloader...\n"
@@ -37,7 +50,7 @@ jade-tpl:
 
 coffee-js:
 	@echo "\ncoffee...\n"
-	@coffee -cbjvp ./coffee/*.coffee > ./script/sn.js
+	@coffee -cbjvp ./script/*.coffee > ./js/sn.js
 
 main-css:
 	@cat ./css/bootstrap.css ./css/bootstrap-responsive.css ./css/sn.css > ./css/style.css
@@ -50,12 +63,7 @@ sn-css:
 
 sn-js:
 	@echo "\nsn: compiling and minifying javascript...\n"
-	@cat ./script/sn.js > ./js/sn.js
-	@cp ./.lmd/main ./script/sn.main.js
-	@cp ./script/sn.main.js ./js/sn.main.js
-
-	@echo "\nsn: running JSHint on javascript...\n"
-	@jshint ./script/*.js --config ./script/.jshintrc
+	@cp ./.lmd/main ./js/sn.main.js
 
 	@echo "\nsn: uglifyjs...\n"
 	@uglifyjs ./js/sn.js -nc > ./js/sn.min.js
@@ -72,9 +80,6 @@ bs-css:
 	@recess --compress ./bootstrap/less/responsive.less > ./css/bootstrap-responsive.min.css
 
 bs-js:
-	@echo "\nbs: running JSHint on javascript...\n"
-	@jshint ./bootstrap/js/*.js --config ./bootstrap/js/.jshintrc
-	
 	@echo "bs: compiling and minifying javascript...\n"
 	@cat ./bootstrap/js/bootstrap-*.js  > ./js/bootstrap.js
 	@uglifyjs ./js/bootstrap.js -nc > ./js/bootstrap.min.tmp.js
@@ -85,6 +90,9 @@ bs-js:
 
 start:
 	@echo "standart-n: \n"
+	@rm -R ./js/
+	@mkdir ./js/
+	@touch ./js/.gitignore
 
 finish:
 	@echo "\nSuccessfully built at ${DATE}."
