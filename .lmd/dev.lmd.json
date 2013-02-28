@@ -1,14 +1,17 @@
 {
 	"name": "dev build",
 	"root": "../",
-	"output": "js/client/dev.lmd.js",
+	"output": "/public/js/client/dev.lmd.js",
 	"modules": {
-		"main": "js/client/main.min.js",
+		"main": "/public/js/client/main.min.js",
 		"jquery": "lib/js/jQuery.1.8.3.min.js",
-		"sn": "js/client/sn.min.js",
-		"bootstrap": "js/client/bootstrap.min.js"
+		"sn": "/public/js/client/sn.min.js",
+		"bootstrap": "/public/js/client/bootstrap.min.js"
 	},
 	"main":"main",
+	"global":"this",
+	"async":true,
+	"js":true,
 	"lazy": true,
 	"pack": true,
 	"ie": true,
