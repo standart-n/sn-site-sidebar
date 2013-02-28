@@ -8,7 +8,7 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start client server-php server-node finish
+all: start folders client server-php server-node finish
 
 client: coffee-js js css img ajaxloader
 
@@ -118,6 +118,20 @@ app:
 start:
 	@echo "standart-n: \n"
 
+folders:
+	@mkdir -p ./tpl/cache
+	@mkdir -p ./tpl/configs
+	@mkdir -p ./tpl/templates
+	@mkdir -p ./tpl/templates_c
+	@mkdir -p ./public/img
+	@mkdir -p ./public/css
+	@mkdir -p ./public/materials
+	@mkdir -p ./public/files
+	@mkdir -p ./public/js/client
+	@mkdir -p ./public/js/controls
+	@mkdir -p ./public/js/routes
+	@mkdir -p ./public/js/tpl
+	
 finish:
 	@echo "\nSuccessfully built at ${DATE}."
 
