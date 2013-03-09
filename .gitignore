@@ -1,10 +1,6 @@
 /conf
-/settings
-/files
 /log
 /public
-/node_modules
-/materials
 /tpl
 
 # Numerous always-ignore extensions

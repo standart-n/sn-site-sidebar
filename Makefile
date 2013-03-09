@@ -8,13 +8,13 @@ HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\
 # BUILD DOCS
 #
 
-all: start folders client server-php server-node finish
+def: all
 
-client: coffee-js js css img ajaxloader
+all: folders client server finish
 
-server-node: app controls-js routes-js jade-js
+client: coffee-js js css img jade-tpl ajaxloader
 
-server-php: jade-tpl
+server: app controls-js routes-js
 
 sn: sn-css main-css coffee-js sn-js lmd
 
@@ -48,7 +48,7 @@ lmd:
 jade-tpl:
 	@echo "\njade...\n"
 	@rm -R ./tpl/templates/
-	@mkdir ./tpl/templates/
+	@mkdir -p ./tpl/templates/
 	@touch ./tpl/templates/.gitignore
 	@jade --pretty ./jade/smarty/ -O ./tpl/templates
 
@@ -106,17 +106,18 @@ routes-js:
 	@mkdir -p ./public/js/routes
 	@coffee -o ./public/js/routes -cb ./node_routes/
 
-jade-js:
-	
-
 app:
 	@echo "\napp...\n"
-	@coffee -cbjvp ./script/app*.coffee > ./app.js
-
-
+	@coffee -cbjvp ./script/app*.coffee > ./app
 
 start:
-	@echo "standart-n: \n"
+	@echo "forever start -o ./log/out.log -e ./log/err.log app"
+	@forever start -o ./log/out.log -e ./log/err.log app
+
+stop:
+	@echo "stop app"
+	@forever stop app
+
 
 folders:
 	@mkdir -p ./tpl/cache
