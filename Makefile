@@ -35,7 +35,7 @@ coffee-js:
 
 main-css:
 	@cat ./public/css/sn.css > ./public/css/style.css
-	@cat ./public/css/sn.min.css > ./public/css/style.min.css
+	@cat ./public/css/sn.min.css > ./style.min.css
 
 sn-css:
 	@echo "\nsn: compiling LESS with Recess\n"

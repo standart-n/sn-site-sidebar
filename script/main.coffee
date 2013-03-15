@@ -4,7 +4,7 @@
 		jq=require("jquery");
 		standart=require("sn");
 		$(function(){
-			$("#sn").sn();
+			$("#sn-side-menu").snSideBar();
 		});
 	}
 }`
