@@ -1,10 +1,6 @@
-`function main(require){
-	if(typeof window !== "undefined"){
-		var bs,jq,standart;
-		jq=require("jquery");
-		standart=require("sn");
-		$(function(){
-			$("#sn-side-menu").snSideBar();
-		});
-	}
-}`
+	do (require) ->
+		if typeof window != "undefined"
+			jq = require "jquery"
+			standart = require "sn"
+			$ () ->
+				$("#sn-side-menu").snSideBar()
